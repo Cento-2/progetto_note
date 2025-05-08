@@ -29,12 +29,20 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+                    <a href="{{ route('notes.index') }}" class="btn btn-secondary">Home</a> &nbsp;
+                    <a href="{{ route('notes.create') }}" class="btn btn-primary">Crea Nota</a> &nbsp;
+                    <a href="{{ route('notes.trashed') }}" class="btn btn-danger">Cestino</a> &nbsp;
+                </div>
                     <ul class="navbar-nav me-auto">
-
+                        <div class="d-flex justify-content-between mb-4">
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
+                        <form action="{{ route('notes.search') }}" method="GET" class="d-flex">
+                            <input type="text" name="search" class="form-control me-2" placeholder="Cerca note..." value="{{ request('search') }}">
+                            <button type="submit" class="btn btn-outline-primary">Cerca</button>
+                        </form> 
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))

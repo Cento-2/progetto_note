@@ -1,7 +1,11 @@
 @extends('layouts.app')
-
 @section('content')
 <div class="container">
+    @if (session('success') or session('error'))
+    <div class="alert alert-{{ session('success') ? 'success' : 'danger' }}">
+        {{ session('success') ?? session('error') }}
+    </div>
+@endif
     <table class="table">
         <thead>
             <tr>
@@ -30,7 +34,7 @@
         <div>
             <a href="{{ route('notes.edit', $note->id) }}" class="btn btn-secondary me-2">Edit Note</a>
             
-            <!-- Bottone Delete separato -->
+            <!-- Bottone Delete -->
             <form action="{{ route('notes.destroy', $note->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Sei sicuro di voler eliminare questa nota?');">
                 @csrf
                 @method('DELETE')

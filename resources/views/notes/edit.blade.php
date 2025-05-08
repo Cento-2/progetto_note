@@ -2,6 +2,11 @@
 
 @section('content')
 <div class="container">
+    @if (session('success') or session('error'))
+    <div class="alert alert-{{ session('success') ? 'success' : 'danger' }}">
+        {{ session('success') ?? session('error') }}
+    </div>
+@endif
     <h1>Edit Note</h1>
     <form action="{{ route('notes.update', $note->id) }}" method="POST">
         @csrf
